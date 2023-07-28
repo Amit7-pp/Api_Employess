@@ -4,6 +4,7 @@ import jwt from "jsonwebtoken";
 import { UserModel, UserModel1 } from "../models/User.js";
 
 
+
 export const userRegistration = async (req, res) => {
   try {
     const { name, email, password, password_confirmation, tc } = req.body;
@@ -82,7 +83,7 @@ export const employeeRegistration = async (req, res) => {
   try {
     
     const { firstName, lastName, bob, gender, mobile, email, photo, location, Govt_idno, govt_id } = req.body;
-    const photoPath = req.file.path;
+    
     const register = await UserModel1.findOne({ email: email });
     if (register) {
       return res.send({ status: "failed", message: "Employee is already registered" });
@@ -98,7 +99,7 @@ export const employeeRegistration = async (req, res) => {
       gender: gender,
       email: email,
       mobile: mobile,
-      photo: photoPath,
+      photo: photo,
       location: location,
       Govt_idno: Govt_idno,
       govt_id: govt_id,
